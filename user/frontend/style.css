@@ -10,6 +10,10 @@ body{
    background-color: aliceblue;
 }
 
+.hidden {
+    display: none;
+}
+
 .heading{
     display: flex;
     justify-content: space-between;
@@ -34,10 +38,12 @@ body{
 
 .logo {
   height: inherit;
+  padding-right: 1rem;
 }
 
 .logo img{
    height: 100%;
+   border-radius: 50%;
 }
 
 .login-status {
@@ -52,4 +58,14 @@ body{
 
 .cart {
    color: #fff;
+}
+
+.search-form {
+   display: flex;
+}
+
+input[type="search"],
+input[type="submit"] {
+   padding: 5px 10px;
+   margin-right: 10px;
 }
