@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+
+:root {
+   --primaryColor: rgb(51, 129, 249);
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -14,12 +19,23 @@ body{
     display: none;
 }
 
+/* Header section starts here */
+
+header {
+   position: fixed;
+   top: 0;
+   right: 0;
+   left: 0;
+   z-index: 100;
+}
+
 .heading{
     display: flex;
     justify-content: space-between;
     height: 8vh;
     background-color: #003;
     padding: 0 2%;
+    border-bottom: solid 2px gray;
 }
 
 .left-heading{
@@ -66,6 +82,92 @@ body{
 
 input[type="search"],
 input[type="submit"] {
-   padding: 5px 10px;
+   padding: 10px 15px;
    margin-right: 10px;
+   border-radius: 3px;
 }
+
+input[type="submit"] {
+   background-color: var(--primaryColor);
+}
+
+.navigation {
+   background-color: #002;
+   height: 8vh;
+}
+
+.navigation ul {
+   display: flex;
+   color: #fff;
+   justify-content: center;
+   align-items: center;
+   height: inherit;
+   list-style: none;
+}
+
+.navigation ul li {
+    padding: 0.4rem 1rem;
+    margin-left: 5rem;
+    font-weight: 600;
+    font-size: 1.3rem;
+    text-transform: capitalize;
+    background-color: var(--primaryColor);
+    border-radius: 1.5rem;
+}
+
+/* Header section ends here */
+
+
+/* Main Section starts Here */
+
+main {
+   min-height: 45vh;
+   margin-top: 18vh;
+}
+
+/* Main Section ends Here */
+
+
+/* Footer Section starts Here*/
+
+footer li {
+    transform: all 2s ease-in-out;
+}
+
+footer li:hover {
+   color: var(--primaryColor);
+   font-size: larger;
+}
+
+.social-share ul {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   list-style: none;
+}
+
+.social-share ul li {
+    margin: 0.5% 1%;
+}
+
+.general-info {
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-start;
+   background-color: #e6eef5;
+   text-transform: capitalize;
+   padding: 0 2%;
+}
+
+.general-info h3 {
+   margin: 25px 0;
+}
+.general-info ul {
+   list-style: none;
+}
+.general-info ul li {
+   margin-bottom: 15px;
+}
+
+/* Footer Section ends Here*/
+
