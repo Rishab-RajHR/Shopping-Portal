@@ -125,6 +125,31 @@ main {
    margin-top: 18vh;
 }
 
+/* Inside Main - Banner Section Starts */
+.swiper-slide {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   color: #fff;
+   font-size: 2rem;
+   text-shadow: 2px 2px 3px var(--primaryColor);
+}
+
+.swiper-slide * {
+     margin-bottom: 0.8rem;
+}
+
+.swiper-slide button {
+     background-color: var(--primaryColor);
+     font-size: 1.5rem;
+     padding: 5px 10px;
+     border-radius: 5px;
+     outline: none;
+     border-color: var(--primaryColor);
+}
+/* Inside Main - Banner Section ends */
+
 /* Main Section ends Here */
 
 
