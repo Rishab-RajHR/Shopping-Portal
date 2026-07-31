@@ -19,6 +19,58 @@ body{
     display: none;
 }
 
+/* Catalogue Styling Starts */
+
+h2 {
+    text-align: center;
+    text-transform: capitalize;
+    margin: 1.5rem 0;
+}
+
+.catalogue {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   margin: auto;
+   width: 87vw;
+}
+
+.card {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    margin: 10% 10%;
+    background-color: lightsteelblue;
+    padding: 5px 5px;
+    border-radius: 5px;
+}
+
+.card-img img {
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.card-img img {
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.card-img img:hover {
+    box-shadow: 0 0 20px 10px var(--primaryColor);
+}
+
+.card-description {
+   padding-top: 25px;
+}
+
+.card-description p {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+}
+
+/* Catalogue Styling Ends */
+
 /* Header section starts here */
 
 header {
@@ -156,7 +208,7 @@ main {
 /* Footer Section starts Here*/
 
 footer li {
-    transform: all 2s ease-in-out;
+    transition: all 1s ease-in-out;
 }
 
 footer li:hover {

@@ -1,13 +1,12 @@
 document.addEventListener("DOMContentLoaded", requestCategories);
 document.addEventListener("DOMContentLoaded", requestBanners);
+document.addEventListener("DOMContentLoaded", requestFeatured);
+document.addEventListener("DOMContentLoaded", requestNewArrivals);
+
 function requestCategories() {
-    fetch("http://localhost/ShoppingCart/user/backend/menu.php", {
-         method: "GET",
-    })
-       .then((res) => res.json())
-       .then((data) => {
-          //  console.log(data);
-          const nav = document.querySelector('.navigation')
+      fetchCall("menu.php", requestCategories);
+      function responseCategories(data) {
+              const nav = document.querySelector('.navigation')
           if(data.categories){
               const ul = document.createElement('ul')
               data.categories.forEach(cat => {
@@ -19,22 +18,20 @@ function requestCategories() {
               });
               nav.append(ul);
           }
-       })
-       .catch((err) => console.log(err))
+  
+      }
 }
+      
+
 
 function getCategoryProducts() {
     console.log("Category Clicked");
 }
 
 function requestBanners() {
-    fetch("http://localhost/ShoppingCart/user/backend/banner.php", {
-         method: "GET",
-    })
-       .then((res) => res.json())
-       .then((data) => {
-        //    console.log(data);
-           if(data.banners){
+     fetchCall("banner.php", responseBanner)
+     function responseBanner(data) {
+              if(data.banners){
               const banners = data.banners
               banners.forEach(banner=>{
                  const slide = document.createElement('div')
@@ -57,9 +54,39 @@ function requestBanners() {
               });
               callCarousal();
            }
-       })
-       .catch((err) => console.log(err))
+     }
+
+ 
 }
+
+// Request for featured products - EventListener
+
+function requestFeatured() {
+     fetchCall("featured.php", responseFeatured)
+     function responseFeatured(data) {
+           const featured = data.featured;
+           const featuredSection = document.querySelector(".featured-products");
+           populateCatalogue(featured, featuredSection);
+     }
+}
+
+// End of Request for Featured products - eventlistener ends
+
+
+// Start Request for new Arrival - EventListener
+
+function requestNewArrivals() {
+     fetchCall("newArrivals.php", responseNewArrivals)
+     function  responseNewArrivals(data) {
+        const newArrivals = data.newArrivals;
+        const newArrivalSection = document.querySelector(".new-arrivals");
+        populateCatalogue(newArrivals, newArrivalSection);
+     }
+
+}
+
+// End of Request for new Arrival - EventListener
+
 
 function callCarousal(){
       const swiper = new Swiper('.swiper', {
@@ -77,4 +104,54 @@ function callCarousal(){
             prevEl: ".swiper-button-prev",
         },
       });
+}
+
+
+function populateCatalogue(products, catalogueParent){
+      if (products) {
+            //  const featuredSection = document.querySelector(".featured-products");
+             const catalogue = document.createElement("div");
+             catalogue.className = "catalogue";
+
+             products.forEach((prod) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                const imgDiv = document.createElement('div');
+                imgDiv.className ='card-img';
+                const descDiv = document.createElement('div');
+                descDiv.className = 'card-description';
+                card.appendChild(imgDiv);
+                card.appendChild(descDiv);
+                const img = document.createElement('img');
+                img.src = `http://localhost/ShoppingCart/${prod.image}`;
+                imgDiv.appendChild(img)
+                const nameP = document.createElement('p');
+                nameP.className='product-name';
+                nameP.textContent = prod.name;
+                const priceP = document.createElement('p');
+                priceP.className = 'product-price';
+                nameP.textContent = `$${prod.price}`;
+                descDiv.appendChild(nameP);
+                descDiv.appendChild(priceP);
+                catalogue.appendChild(card);
+             });
+
+             catalogueParent.appendChild(catalogue);
+        }
+}
+
+// Fetch request refactoring
+
+function fetchCall(resource, callBack, method = "GET") {
+      const url = "http://localhost/ShoppingCart/user/backend/";
+      fetch(url + resource, {
+         method: method,
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        callBack(data);
+        // ....
+        // handleFetchResponse(data)
+      })
+      .catch((err) => console.log(err));
 }
