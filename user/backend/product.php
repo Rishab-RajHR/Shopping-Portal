@@ -3,7 +3,7 @@ require './include/db.php';
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
-if ($_SERVER['REQUEST_METHOD'] === "GET" && !isset($_GET['category'])) {
+if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['category'])) {
 
     echo json_encode([
         'error' => 'Category parameter is missing.'
@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET" && !isset($_GET['category'])) {
     }
 
     $prep_stmt->bind_param('s', $category);
+    
     $prep_stmt->execute();
 
     if ($result = $prep_stmt->get_result()) {

@@ -143,6 +143,7 @@ function populateCatalogue(products, catalogueParent){
              products.forEach((prod) => {
                 const card = document.createElement('div');
                 card.className = 'card';
+                card.addEventListener("click", getProductDetails.bind(prod));
                 const imgDiv = document.createElement('div');
                 imgDiv.className ='card-img';
                 const descDiv = document.createElement('div');
@@ -181,4 +182,13 @@ function fetchCall(resource, callBack, method = "GET") {
         // handleFetchResponse(data)
       })
       .catch((err) => console.log(err));
+}
+
+
+function getProductDetails() {
+      console.log("Product Clicked", this);
+      fetchCall(`inventory.php?id=${this.category_id}`, responseInventory);
+      function responseInventory(data) {
+            console.log(data);
+      }
 }
