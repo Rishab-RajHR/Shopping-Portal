@@ -228,6 +228,21 @@ main {
     background-color: #fff;
     z-index: 300;
     border-radius: 7px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: 10px 20px;
+}
+
+.modal img {
+   max-height: 44vh;
+}
+
+.modal-desc {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
+   padding-left: 1.5rem;
 }
 
 /* Overlay Ends */

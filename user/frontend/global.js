@@ -188,9 +188,10 @@ function fetchCall(resource, callBack, method = "GET") {
 function getProductDetails() {
       // console.log("Product Clicked", this);
       const main = document.querySelector("main");
-      fetchCall(`inventory.php?id=${this.id}`, responseInventory);
+      fetchCall(`inventory.php?id=${this.id}`, responseInventory.bind(this));
       function responseInventory(data) {
             // console.log(data);
+            const stock =+ data.stock;
             const overlay = document.createElement("div");
             overlay.className = "overlay";
             overlay.addEventListener('click', removeOverlay)
@@ -198,6 +199,58 @@ function getProductDetails() {
             const modal = document.createElement("div");
             modal.className = "modal";
             main.appendChild(modal);
+            const img = document.createElement("img");
+            img.src = `http://localhost/ShoppingCart${this.image}`;
+            modal.appendChild(img);
+            const modalDesc = document.createElement('div');
+            modalDesc.className = 'modal-desc'
+            modal.appendChild(modalDesc);
+            const title = document.createElement('div');
+            title.textContent = this.name
+            modalDesc.appendChild(title);
+            const desc = document.createElement('div');
+            desc.textContent = this.description;
+            modalDesc.appendChild(desc);
+            const price = document.createElement("div");
+            price.textContent = `$${this.price}`;
+            modalDesc.appendChild(price);
+            const stockDiv = document.createElement('div')
+            switch (true) {
+                  case stock > 10:
+                        stockDiv.textContent = 'In Stock'
+                        stockDiv.style.color = 'green'
+                        break;
+                  case stock > 0 && stock <= 10:
+                        stockDiv.textContent = `only ${stock} left`
+                        stockDiv.style.color = 'green'
+                        break;
+                  case stock == 0:
+                        stockDiv.textContent = 'Out of stock'
+                        stockDiv.style.color = 'red'
+                        break;
+                  default:
+                        stockDiv.textContent = 'Not Sure'
+                        break;
+            }
+            modalDesc.appendChild(stockDiv);
+            const select = document.createElement("select");
+            if(stock == 0) {
+                  select.disabled = true
+            } else {
+                  const counter = stock > 10 ? 10 : stock
+                  for(let i=1; i <= counter; i++) {
+                        const option = document.createElement("option");
+                        option.value = i;
+                        option.textContent = i;
+                        select.appendChild(option)
+
+                  }
+            }
+            modalDesc.appendChild(select);
+            const addToCart = document.createElement("button");
+            addToCart.className = "add-to-cart";
+            addToCart.textContent = "Add To Cart";
+            modalDesc.appendChild(addToCart);
       }
 }
 
