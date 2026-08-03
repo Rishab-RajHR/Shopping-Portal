@@ -205,6 +205,33 @@ main {
 /* Main Section ends Here */
 
 
+/* Overlay Starts */
+
+.overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   width: 100vw;
+   height: 100vh;
+   background-color: #002;
+   opacity: 0.8;
+   z-index: 200;
+}
+
+.modal {
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    width: 50vw;
+    height: 50vh;
+    background-color: #fff;
+    z-index: 300;
+    border-radius: 7px;
+}
+
+/* Overlay Ends */
+
 /* Footer Section starts Here*/
 
 footer li {

@@ -186,9 +186,30 @@ function fetchCall(resource, callBack, method = "GET") {
 
 
 function getProductDetails() {
-      console.log("Product Clicked", this);
-      fetchCall(`inventory.php?id=${this.category_id}`, responseInventory);
+      // console.log("Product Clicked", this);
+      const main = document.querySelector("main");
+      fetchCall(`inventory.php?id=${this.id}`, responseInventory);
       function responseInventory(data) {
-            console.log(data);
+            // console.log(data);
+            const overlay = document.createElement("div");
+            overlay.className = "overlay";
+            overlay.addEventListener('click', removeOverlay)
+            main.appendChild(overlay);
+            const modal = document.createElement("div");
+            modal.className = "modal";
+            main.appendChild(modal);
       }
+}
+
+function removeOverlay() {
+   const main = document.querySelector("main");
+   const overlay = document.querySelector(".overlay");
+   const modal = document.querySelector(".modal");
+
+   if (overlay) {
+       overlay.remove();
+   }
+   if (modal) {
+       modal.remove();
+   }
 }
