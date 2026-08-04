@@ -252,6 +252,25 @@ main {
    padding: 5px 0;
 }
 
+.modal-desc select {
+    border: none;
+    border-bottom: solid 1px var(--primaryColor);
+}
+
+.add-to-cart {
+    background-color: var(--primaryColor);
+    border: solid 1px var(--primaryColor);
+    padding: 10px 10px;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px lightgray;
+    border-radius: 5px;
+    font-size: large;
+}
+
+.modal-desc :first-child {
+   font-weight: 700;
+}
+
 /* Overlay Ends */
 
 /* Footer Section starts Here*/
